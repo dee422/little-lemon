@@ -25,7 +25,7 @@ val httpClient = HttpClient(Android) {
 
 suspend fun fetchMenu(): MenuNetwork {
     val response: String = httpClient
-        .get("https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json")
+        .get("https://raw.githubusercontent.com/dee422/littlelemon-assets/refs/heads/main/menu.json")
         .body()
 
     println("🔥 RAW JSON = $response")
