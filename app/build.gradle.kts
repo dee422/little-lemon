@@ -2,13 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    // 新增
+    id("kotlin-kapt")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
     namespace = "com.littlelemon.littlelemon"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.littlelemon.littlelemon"
@@ -42,6 +44,7 @@ android {
 }
 
 dependencies {
+    // ===== 原有 =====
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -50,6 +53,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation("androidx.navigation:navigation-compose:2.5.3")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -57,5 +62,19 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-    implementation("androidx.navigation:navigation-compose:2.5.3")
+
+    // ===== Ktor =====
+    implementation("io.ktor:ktor-client-android:2.1.3")
+    implementation("io.ktor:ktor-client-content-negotiation:2.1.3")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.1.3")
+
+    // ===== Room =====
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1") // Remove duplicate version
+    kapt("androidx.room:room-compiler:2.6.1")
+
+    // ===== Glide Compose =====
+    implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
+
 }
+
